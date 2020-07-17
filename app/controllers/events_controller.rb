@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   		format.html
   		format.xml { render :xml => @events }
   		format.json { render :json => @events }
+  	end
   end
 
   def show
@@ -18,5 +19,19 @@ class EventsController < ApplicationController
   end
 
   def edit
+  end
+
+  def create
+  	@event = Event.new.(event_params)
+
+  	respond_to do |format|
+  		if @event.save
+  			format.html { redirect_to @event, notice: 'Event was succesfully created.' }
+  			format.json { render :show, status: :created, location: @event }
+  		else
+  			format.html { render :new }
+  			format.json { render json: @event.errors, status: :unprocessable_entity }
+  		end
+  	end
   end
 end
