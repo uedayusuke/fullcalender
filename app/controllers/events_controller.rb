@@ -22,11 +22,11 @@ class EventsController < ApplicationController
   end
 
   def create
-  	@event = Event.new.(event_params)
+  	@event = Event.new(event_params)
 
   	respond_to do |format|
   		if @event.save
-  			format.html { redirect_to @event, notice: 'Event was succesfully created.' }
+  			format.html { redirect_to @event, notice: 'Event was successfully created.' }
   			format.json { render :show, status: :created, location: @event }
   		else
   			format.html { render :new }
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   def update
   	respond_to do |format|
   		if @event.update(event_params)
-  			format.html { redirect_to @event, notice: 'Event was succesfully updated.' }
+  			format.html { redirect_to @event, notice: 'Event was successfully updated.' }
   			format.json { render :show, status: :ok, location: @event }
   		else
   			format.html { render :edit }
